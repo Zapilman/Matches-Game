@@ -1,0 +1,32 @@
+
+
+.mathces_area{
+
+    font-size: 20px;
+
+    max-width: 80%;
+    margin: 0 auto;
+}
+.mathces_area p{
+    margin-top: 10px;
+}
+
+.mathces {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.number{
+    font-size: 1.5rem;
+    color:rgb(106, 163, 137);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+.status{
+    font-size: 40px;
+    color: black;
+}

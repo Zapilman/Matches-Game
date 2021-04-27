@@ -1,0 +1,25 @@
+
+
+.game{
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.game__area{
+    display: flex;
+    align-items: center;
+    height: 50vh;
+}
+
+.game__options{
+
+}
+
+.participant{
+    flex-basis: 25%;
+}
+.matches{
+    flex-basis: 50%;
+}

@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import Game from "./Game/Game";
+import {Route} from "react-router-dom";
+import Menu from "./Menu/Menu";
+import Custom from "./Cutom/Custom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+
+const App = (props) => {
+    return (
+        <div>
+            <Route path='/game' render={()=><Game store={props.store}/>}></Route>
+            <Route exact path='/' render={()=><Menu store={props.store}/>}></Route>
+            <Route path='/custom' render={()=><Custom store={props.store}/>}></Route>
+        </div>
+    )
 }
 
 export default App;
