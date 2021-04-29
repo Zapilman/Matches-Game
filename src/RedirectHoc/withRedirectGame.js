@@ -2,7 +2,7 @@ import {Redirect} from 'react-router-dom'
 import {connect} from "react-redux";
 
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     isRulesExists: state.game.isRulesExists
 });
 

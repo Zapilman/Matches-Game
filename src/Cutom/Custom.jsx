@@ -1,17 +1,17 @@
 import {useForm} from "react-hook-form";
-import {connect} from "react-redux";
-import {setGameRulesCustom} from "../redux/gameReducer";
-import {compose} from "redux";
+import {useDispatch} from "react-redux";
+import {setGameRules} from "../redux/gameReducer";
 import withRedirectHoc from "../RedirectHoc/withRedirectCustom";
 import s from '../Cutom/Custom.module.css'
 
 
-const Custom = (props) => {
+const Custom = () => {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const dispatch = useDispatch();
 
     const onSubmit = (data) => {
-        props.setGameRulesCustom(data.Max, (2 * data.Count + 1), (data.isUserFirst == 'true'));
+        dispatch(setGameRules((2 * data.Count + 1), parseInt(data.Max), (data.isUserFirst == 'true')))
     }
 
     return (
@@ -60,8 +60,5 @@ const Custom = (props) => {
 }
 
 
-export default compose(
-    withRedirectHoc,
-    connect(()=>({}), {setGameRulesCustom})
-)(Custom)
+export default withRedirectHoc(Custom)
 

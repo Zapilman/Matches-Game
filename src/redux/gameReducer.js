@@ -1,63 +1,71 @@
 const SET_USER_COUNT = 'SET_USER_COUNT';
 const SET_COMPUTER_COUNT = 'SET_COMPUTER_COUNT';
 const SET_MATCHES_COUNT = 'SET_MATCHES_COUNT';
-const SET_IS_USER_FIRST = 'SET_IS_USER_FIRST';
 const SET_MAX_TAKE = 'SET_MAX_TAKE';
-const SET_IS_RULES_EXISTS = 'SET_IS_RULES_EXISTS';
+const SET_IS_LOADING = 'SET_IS_LOADING';
+const SET_GAME_RULES = 'SET_GAME_RULES';
 
 const initialState = {
     matchesCount: 0,
     userCount: 0,
-    computerCount:0,
+    computerCount: 0,
     isUserFirst: true,
-    maxTake: 0,
-    isRulesExists: false
+    maxTake: 3,
+    isRulesExists: false,
+    isLoading: false
 };
 
 
 export const setUserCountAC = (count) => ({type: SET_USER_COUNT, count})
 export const setComputerCountAC = (count) => ({type: SET_COMPUTER_COUNT, count})
-export const setMatchesCountAC = (count) => ({type: SET_MATCHES_COUNT, count})
-export const isUserFirstAC = (isFirst) => ({type:SET_IS_USER_FIRST, isFirst})
-export const setMaxTake = (max) => ({type:SET_MAX_TAKE, max})
-export const setIsRulesExists = (isExists) => ({type: SET_IS_RULES_EXISTS, isExists})
+export const setMaxTake = (max) => ({type: SET_MAX_TAKE, max})
+export const setIsLoadingAC = (isLoading) => ({type: SET_IS_LOADING, isLoading});
+export const setGameRules = (matchesCount, maxTake, isUserFirst) => ({
+    type: SET_GAME_RULES,
+    matchesCount,
+    maxTake,
+    isUserFirst
+})
 
 const gameReducer = (state = initialState, action) => {
-    switch(action.type){
-        case SET_USER_COUNT:{
-            return({
+    switch (action.type) {
+        case SET_USER_COUNT: {
+            return ({
                 ...state,
                 userCount: action.count
             })
         }
-        case SET_COMPUTER_COUNT:{
-            return({
+        case SET_COMPUTER_COUNT: {
+            return ({
                 ...state,
                 computerCount: action.count
             })
         }
-        case SET_MATCHES_COUNT:{
-            return({
+        case SET_MATCHES_COUNT: {
+            return ({
                 ...state,
                 matchesCount: action.count
             })
         }
-        case SET_IS_USER_FIRST:{
-            return ({
-                ...state,
-                isUserFirst: action.isFirst
-            })
-        }
-        case SET_MAX_TAKE:{
+        case SET_MAX_TAKE: {
             return ({
                 ...state,
                 maxTake: action.max
             })
         }
-        case SET_IS_RULES_EXISTS:{
+        case SET_IS_LOADING: {
             return ({
                 ...state,
-                isRulesExists: action.isExists
+                isLoading: action.isLoading
+            })
+        }
+        case SET_GAME_RULES: {
+            return ({
+                ...state,
+                matchesCount: action.matchesCount,
+                maxTake: action.maxTake,
+                isUserFirst: action.isUserFirst,
+                isRulesExists: true
             })
         }
     }
@@ -65,23 +73,12 @@ const gameReducer = (state = initialState, action) => {
     return state;
 }
 
-
-
-export const setGameRulesDefault = (isUserFirst) => {
+export const setComputerPick = () => {
     return (dispatch) => {
-        dispatch(setMatchesCountAC(25));
-        dispatch(isUserFirstAC(isUserFirst));
-        dispatch(setMaxTake(3))
-        dispatch(setIsRulesExists(true));
-    }
-}
-
-export const setGameRulesCustom = (maxTakes, macthesCount, isUserFirst) => {
-    return (dispatch) => {
-        dispatch(setMatchesCountAC(macthesCount));
-        dispatch(isUserFirstAC(isUserFirst));
-        dispatch(setMaxTake(maxTakes))
-        dispatch(setIsRulesExists(true));
+        dispatch(setIsLoadingAC(true));
+        setTimeout(() => {
+            dispatch(setIsLoadingAC(false))
+        }, 1000)
     }
 }
 

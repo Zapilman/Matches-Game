@@ -3,11 +3,11 @@ import gameReducer from "./gameReducer";
 import thunk from "redux-thunk";
 
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     game: gameReducer
 })
 
 
-let store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(reducers, applyMiddleware(thunk));
 
 export default store

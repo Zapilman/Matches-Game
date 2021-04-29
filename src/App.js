@@ -2,17 +2,18 @@ import Game from "./Game/Game";
 import {Route} from "react-router-dom";
 import Menu from "./Menu/Menu";
 import Custom from "./Cutom/Custom";
-
-
-
+import {Provider} from "react-redux";
+import React from "react";
 
 
 const App = (props) => {
     return (
         <div>
-            <Route path='/game' render={()=><Game store={props.store}/>}></Route>
-            <Route exact path='/' render={()=><Menu store={props.store}/>}></Route>
-            <Route path='/custom' render={()=><Custom store={props.store}/>}></Route>
+            <Provider store={props.store}>
+                <Route path='/game' render={() => <Game/>}></Route>
+                <Route exact path='/' render={() => <Menu/>}></Route>
+                <Route path='/custom' render={() => <Custom/>}></Route>
+            </Provider>
         </div>
     )
 }
